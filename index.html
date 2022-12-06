@@ -8,7 +8,39 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head>
 <body>
+    <div class="container mt-4">
+        <h1 class="display-4 text-center">
+            My<span class="text-primary">Movies</span>List
+        </h1>
+        <table class="table table-striped my-4">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Producer</th>
+                    <th>Year</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="movie-list"></tbody>
+        </table>
+        <form id="movie-form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+                <label for="name">Producer</label>
+                <input type="text" id="name" class="form-control">
+            </div>
+            <div class="form-group mt-2">
+                <label for="year">Year</label>
+                <input type="text" id="year" class="form-control">
+            </div>
+            <input type="submit" value="Add Movie" class="btn btn-primary btn-block mt-2">
+        </form>
+    </div>
 
+    <script src="script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
