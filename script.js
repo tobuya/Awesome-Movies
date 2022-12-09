@@ -29,7 +29,7 @@ class UI {
     }
 
     static addMovieToList(movie) {
-        const list = document.getElementById('book-list');
+        const list = document.getElementById('movie-list');
 
         const row = document.createElement('tr');
 
@@ -48,6 +48,7 @@ class UI {
 //Store Class: Handle Local Storage
 
 //Event: Display Movies
+document.addEventListener('DOMContentLoaded', UI.displayMovies);
 
 //Event: Add a Movie
 
