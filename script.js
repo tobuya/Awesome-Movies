@@ -1,3 +1,5 @@
+const movieForm = document.getElementById('movie-form');
+
 // Movie Class: Represents a movie
 class Movie {
     constructor (title, producer, year) {
@@ -51,5 +53,20 @@ class UI {
 document.addEventListener('DOMContentLoaded', UI.displayMovies);
 
 //Event: Add a Movie
+movieForm.addEventListener('submit', (e) => {
+    //Prevent actual submit
+    e.preventDefault()
+
+    //Get form values
+    const title = document.getElementById('title').value;
+    const producer = document.getElementById('name').value;
+    const year = document.getElementById('year').value;
+
+    //Instantiate movie
+    const movie = new Movie(title, producer, year);
+    
+    //Add movie to list
+    UI.addMovieToList(movie);
+});
 
 //Event: Remove a Movie
