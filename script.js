@@ -45,6 +45,12 @@ class UI {
         `
         list.appendChild(row);
     }
+
+    static clearFields() {
+        document.getElementById('title').value = '';
+        document.getElementById('name').value = '';
+        document.getElementById('year').value = '';
+    }
 }
 
 //Store Class: Handle Local Storage
@@ -67,6 +73,9 @@ movieForm.addEventListener('submit', (e) => {
     
     //Add movie to list
     UI.addMovieToList(movie);
+
+    //Clear fields
+    UI.clearFields();
 });
 
 //Event: Remove a Movie
