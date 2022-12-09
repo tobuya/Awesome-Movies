@@ -46,6 +46,12 @@ class UI {
         list.appendChild(row);
     }
 
+    static deleteMovie(el) {
+        if(el.classList.contains('delete')) {
+            el.parentElement.parentElement.remove();
+        }
+    }
+
     static clearFields() {
         document.getElementById('title').value = '';
         document.getElementById('name').value = '';
@@ -79,3 +85,7 @@ movieForm.addEventListener('submit', (e) => {
 });
 
 //Event: Remove a Movie
+//We target the #movie-list so that we can do it for all its list i.e Event propagation
+document.getElementById('movie-list').addEventListener('click', (e) => {
+    UI.deleteMovie(e.target);
+});
