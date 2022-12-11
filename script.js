@@ -12,7 +12,7 @@ class Movie {
 //UI Class: Handle UI Tasks
 class UI {
     static displayMovies() {
-        const movies = localStorage.getMovies();
+        const movies = Store.getMovies();
 
         movies.forEach((movie) => UI.addMovieToList(movie));
     }
@@ -108,8 +108,11 @@ movieForm.addEventListener('submit', (e) => {
         //Instantiate movie
         const movie = new Movie(title, producer, year);
         
-        //Add movie to list
+        //Add movie to UI
         UI.addMovieToList(movie);
+
+        //Add movie to Store
+        Store.addMovies(movie);
 
         //Show success message
         UI.showAlert('Movie Added', 'success');
