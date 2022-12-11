@@ -52,6 +52,18 @@ class UI {
         }
     }
 
+    static showAlert(message, className) {
+        const div = document.createElement('div');
+        div.className = `alert alert-${className}`;
+        div.appendChild(document.createTextNode(message));
+        const container = document.querySelector('.container');
+        const form = document.querySelector('#movie-form');
+        container.insertBefore(div, form);
+
+        //Vanish in 2 seconds
+        setTimeout(() => document.querySelector('.alert').remove(), 2000);
+    }
+
     static clearFields() {
         document.getElementById('title').value = '';
         document.getElementById('name').value = '';
@@ -74,18 +86,30 @@ movieForm.addEventListener('submit', (e) => {
     const producer = document.getElementById('name').value;
     const year = document.getElementById('year').value;
 
-    //Instantiate movie
-    const movie = new Movie(title, producer, year);
-    
-    //Add movie to list
-    UI.addMovieToList(movie);
+    //Validate
+    if(title === '' || producer === '' || year === ''){
+        UI.showAlert('Please fill in all fields', 'danger');
+    }else {
+        //Instantiate movie
+        const movie = new Movie(title, producer, year);
+        
+        //Add movie to list
+        UI.addMovieToList(movie);
 
-    //Clear fields
-    UI.clearFields();
+        //Show success message
+        UI.showAlert('Movie Added', 'success');
+
+        //Clear fields
+        UI.clearFields();
+    }
+
 });
 
 //Event: Remove a Movie
 //We target the #movie-list so that we can do it for all its list i.e Event propagation
 document.getElementById('movie-list').addEventListener('click', (e) => {
     UI.deleteMovie(e.target);
+
+    //Show success message
+    UI.showAlert('Movie Removed', 'success');
 });
