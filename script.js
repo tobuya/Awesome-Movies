@@ -2,10 +2,10 @@ const movieForm = document.getElementById('movie-form');
 
 // Movie Class: Represents a movie
 class Movie {
-    constructor (title, producer, year) {
+    constructor (title, producer, umi) {
         this.title = title;
         this.producer = producer;
-        this.year = year;
+        this.umi = umi;
     }
 }
 
@@ -25,7 +25,7 @@ class UI {
         row.innerHTML = `
           <td>${movie.title}</td>
           <td>${movie.producer}</td>
-          <td>${movie.year}</td>
+          <td>${movie.umi}</td>
           <td>
             <a href="#" class="btn btn-danger btn-sm delete">remove</a>
           </td>
@@ -54,7 +54,7 @@ class UI {
     static clearFields() {
         document.getElementById('title').value = '';
         document.getElementById('name').value = '';
-        document.getElementById('year').value = '';
+        document.getElementById('umi').value = '';
     }
 }
 
@@ -76,10 +76,10 @@ class Store {
         localStorage.setItem('movies', JSON.stringify(movies));
     }
 
-    static removeMovie(title) {
+    static removeMovie(umi) {
         const movies = Store.getMovies();
         movies.forEach((movie, index) => {
-            if(movie.title === title) {
+            if(movie.umi === umi) {
                 movies.splice(index, 1);
             }
         });
@@ -99,14 +99,14 @@ movieForm.addEventListener('submit', (e) => {
     //Get form values
     const title = document.getElementById('title').value;
     const producer = document.getElementById('name').value;
-    const year = document.getElementById('year').value;
+    const umi = document.getElementById('umi').value;
 
     //Validate
-    if(title === '' || producer === '' || year === ''){
+    if(title === '' || producer === '' || umi === '') {
         UI.showAlert('Please fill in all fields', 'danger');
     }else {
         //Instantiate movie
-        const movie = new Movie(title, producer, year);
+        const movie = new Movie(title, producer, umi);
         
         //Add movie to UI
         UI.addMovieToList(movie);
@@ -126,7 +126,11 @@ movieForm.addEventListener('submit', (e) => {
 //Event: Remove a Movie
 //We target the #movie-list so that we can do it for all its list i.e Event propagation
 document.getElementById('movie-list').addEventListener('click', (e) => {
+    //Remove movie from UI
     UI.deleteMovie(e.target);
+
+    //Remove movie from store
+    Store.removeMovie(e.target.parentElement.previousElementSibling.textContent);
 
     //Show success message
     UI.showAlert('Movie Removed', 'success');
