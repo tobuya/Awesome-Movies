@@ -12,20 +12,7 @@ class Movie {
 //UI Class: Handle UI Tasks
 class UI {
     static displayMovies() {
-        const storedMovies = [
-            {
-                title: "Black Panther",
-                producer: "Marvel",
-                year: 2017
-            },
-            {
-                title: "Banshee",
-                producer: "Marvel",
-                year: 2002
-            }
-        ]
-
-        const movies = storedMovies;
+        const movies = localStorage.getMovies();
 
         movies.forEach((movie) => UI.addMovieToList(movie));
     }
