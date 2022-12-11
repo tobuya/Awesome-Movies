@@ -72,6 +72,9 @@ class UI {
 }
 
 //Store Class: Handle Local Storage
+class Store {
+    //
+}
 
 //Event: Display Movies
 document.addEventListener('DOMContentLoaded', UI.displayMovies);
