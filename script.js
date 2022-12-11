@@ -73,7 +73,15 @@ class UI {
 
 //Store Class: Handle Local Storage
 class Store {
-    //
+    static getMovies() {
+        let movies;
+        if(localStorage.getItem('movies') === null) {
+            movies = [];
+        }else {
+            movies = JSON.parse(localStorage.getItem('movies'));
+        }
+        return movies;
+    }
 }
 
 //Event: Display Movies
