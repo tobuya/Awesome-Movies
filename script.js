@@ -82,6 +82,12 @@ class Store {
         }
         return movies;
     }
+
+    static addMovies(movie) {
+        const movies = Store.getMovies();
+        movies.push(movie);
+        localStorage.setItem('movies', JSON.stringify(movies));
+    }
 }
 
 //Event: Display Movies
